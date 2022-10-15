@@ -43,5 +43,5 @@ for link in links:
 to_json_d.update({"data": to_json_l})
 json_object = json.dumps(to_json_d, indent=5, ensure_ascii=False)
 # 'data{n}.json' - file where vacancy cards are parsed, n - arbitrary number
-with open("data6.json", "w", encoding='utf8') as outfile:
+with open("../data_json/data6.json", "w", encoding='utf8') as outfile:
     outfile.write(json_object)
