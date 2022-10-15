@@ -32,9 +32,10 @@ for link in links:
         # description.append(soup1.find('div', {"class":"style-ugc"}).text)
 
         to_json_l.append({'vacancy': (soup1.find("h1", {"class": "page-title__title"})).text,
+                          'company': soup1.find('div', {'class': 'company_name'}).text,
                           'requirements': soup1.find('span', {"class": "inline-list"}).text,
                           'description': soup1.find('div', {"class": "style-ugc"}).text,
-                          'company': soup1.find('div', {'class': 'company_name'}).text,
+                          'link': "https://career.habr.com" + link,
                           'date': soup1.find('div', {'class': 'vacancy-header__date'}).text})
     else:
         pass
@@ -42,5 +43,5 @@ for link in links:
 to_json_d.update({"data": to_json_l})
 json_object = json.dumps(to_json_d, indent=5, ensure_ascii=False)
 # 'data{n}.json' - file where vacancy cards are parsed, n - arbitrary number
-with open("data5.json", "w", encoding='utf8') as outfile:
+with open("data6.json", "w", encoding='utf8') as outfile:
     outfile.write(json_object)
