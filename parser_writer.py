@@ -1,5 +1,4 @@
 import requests
-import re
 from bs4 import BeautifulSoup
 import json
 
@@ -12,7 +11,8 @@ date = list()
 to_json_l = list()
 to_json_d = dict()
 
-for n in range(1, 11):
+# range(a,n) - range of pages to parse from
+for n in range(1, 56):
     pagen = requests.get(f"https://career.habr.com/vacancies?page={n}&type=all")
     soupn = BeautifulSoup(pagen.content, "html.parser")
     for i in soupn.find_all("a", {"class": "vacancy-card__icon-link"}):
@@ -29,10 +29,11 @@ for link in links:
         description = list(filter(lambda x: x is not None, description))
         company.append(soup1.find('div',{'class':'company_name'}).text)
         date.append(soup1.find('div',{'class':'vacancy-header__date'}).text)"""
-        description.append(soup1.find('div', {"class":"style-ugc"}).text)
+        # description.append(soup1.find('div', {"class":"style-ugc"}).text)
+
         to_json_l.append({'vacancy': (soup1.find("h1", {"class": "page-title__title"})).text,
                           'requirements': soup1.find('span', {"class": "inline-list"}).text,
-                          'description': soup1.find('div', {"class":"style-ugc"}).text,
+                          'description': soup1.find('div', {"class": "style-ugc"}).text,
                           'company': soup1.find('div', {'class': 'company_name'}).text,
                           'date': soup1.find('div', {'class': 'vacancy-header__date'}).text})
     else:
@@ -40,5 +41,6 @@ for link in links:
 
 to_json_d.update({"data": to_json_l})
 json_object = json.dumps(to_json_d, indent=5, ensure_ascii=False)
-with open("data4.json", "w", encoding='utf8') as outfile:
+# 'data{n}.json' - file where vacancy cards are parsed, n - arbitrary number
+with open("data5.json", "w", encoding='utf8') as outfile:
     outfile.write(json_object)

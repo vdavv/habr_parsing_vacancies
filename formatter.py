@@ -1,7 +1,7 @@
 import json
 import re
 
-with open('data4.json', 'r') as openfile:
+with open('data5.json', 'r') as openfile:
     # Reading from json file
     json_object = json.load(openfile)
 
@@ -21,5 +21,5 @@ for card in json_object['data']:
 # to_json_dict_f.update({'data':to_json_dict_edited})
 
 json_object = json.dumps(to_json_dict_edited, indent=5, ensure_ascii=False)
-with open("data4_edited.json", "w", encoding='utf8') as outfile:
+with open("data5_edited.json", "w", encoding='utf8') as outfile:
     outfile.write(json_object)

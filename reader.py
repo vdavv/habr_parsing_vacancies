@@ -1,10 +1,10 @@
 import json
 
 # Opening JSON file
-with open('data2.json', 'r') as openfile:
+with open('data4_edited.json', 'r') as openfile:
 
     # Reading from json file
     json_object = json.load(openfile)
 
-print(json_object['data'])
+print(json_object)
 print(type(json_object))
