@@ -13,19 +13,18 @@ for card in json_object['data']:
     tmp = dict()
     for k, v in card.items():
         if k == "description":
-            tmp.update({k: re.sub("[/;.,\-\—()\:\d\·(\xa0)(\n)«»" "]| . | (как) | (это) | (так) | ([а-я][а-я]) | {2}", " ", v)})
+            tmp.update({k: re.sub("[/;.,\-\—()\:\d\·(\xa0)(\n)«»" "]| . | (как) | (это) | (так) | ([а-я][а-я]) | {2}",
+                                  " ", v)})
         elif k == "requirements":
             tmp.update({k: re.sub("[/;.,\-()\:\·(\xa0)(\n)•«»]", " ", v)})
         elif k == "company":
             tmp.update({k: re.sub("[(\n)«»]", "", v)})
         elif k == 'vacancy':
-            tmp.update({k:re.sub("[/«»\-]", " ", v)})
+            tmp.update({k: re.sub("[/«»\-]", " ", v)})
         elif k == 'link':
             tmp.update({k: 'https://career.habr.com' + v})
         else:
             tmp.update({k: v.strip()})
-
-
 
     to_json_dict_edited.update({i: tmp})
     i += 1
