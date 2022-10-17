@@ -64,7 +64,7 @@ def euclidean_similarity(x: list, y: list) -> float:
     # sensitivity of algorithm
     return 1 / (0.1 + _sum)
 
-
+print('Введите описание желаемой вакансии:')
 in_text = input()
 in_nlp = nlp(in_text)
 in_bow = [bow('vacancy', in_nlp), bow('requirements', in_nlp)]
@@ -100,7 +100,7 @@ while len(similarity) > 0:
 n_vacs = 10
 # debugging
 # print(similarity_sorted)
-print('\n'*3)
+print('\n')
 for i in range(n_vacs):
     idc = list(similarity_sorted[i].keys())[0]
     card_vc = data_edited[str(idc)]
